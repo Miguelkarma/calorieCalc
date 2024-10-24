@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
     <!-- Home button with arrow icon -->
-    <button class="button3" onclick="window.location.href='homepage.html'">
+    <button class="button3" onclick="window.location.href='home.html'">
     <i class="fas fa-arrow-left"></i> ←🏛️
     </button>
 
