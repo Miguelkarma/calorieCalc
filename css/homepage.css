@@ -326,7 +326,7 @@ header a{
 @media screen and (max-width: 1024px) {
     header {
         max-width: 90%;
-        height: 45px;
+        height:50px;
     }
 
     .carousel .list .item .content {
@@ -355,7 +355,7 @@ header a{
 @media screen and (max-width: 768px) {
     header {
         max-width: 95%;
-        height: 40px;
+        height: 50px;
     }
 
     .carousel .list .item .content {
@@ -387,7 +387,7 @@ header a{
 
 @media screen and (max-width: 480px) {
     header {
-        height: 35px;
+        height: 50px;
     }
 
     .carousel .list .item .content {
