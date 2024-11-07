@@ -106,7 +106,7 @@ $result = $stmt->fetchAll();
 
                 <!-- Modal -->
                 <div class="modal fade" id="addcalorieModal" tabindex="2" aria-labelledby="addcalorie" aria-hidden="true" >
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="addcalorie">Add Calorie Intake</h5>
@@ -138,6 +138,65 @@ $result = $stmt->fetchAll();
                 </div>
             </div>
 
+           
+
+
+<!-- delete-Modal -->
+<div class="modal modal-mg fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-none">
+        <h1 class="modal-title-delete text-white text-center fs-2 fw-light " id="exampleModalLabel">Are you sure you want to delete this?</h1>
+     
+      </div>
+      <div class="modal-body">
+      
+                                    <div class="modal-footer-delete text-center">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                      
+                                        <button type="button" class="btn btn-primary" onclick="removecalorie()">Yes</button>
+                                      
+                                    </div>
+                              
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Calorie Modal -->
+<div class="modal fade" id="editCalorieModal" tabindex="-1" aria-labelledby="editCalorieLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="editCalorieLabel">Edit Calorie Intake</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editCalorieForm" method="POST">
+                    <div class="form-group">
+                        <label for="editCalorieDate">Calorie Date:</label>
+                        <input type="date" class="form-control" id="editCalorieDate" name="calorie_date" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="editCalorieAmount">Calorie Amount (in grams):</label>
+                        <input type="number" class="form-control" id="editCalorieAmount" name="calorie_amount" required>
+                    </div>
+                    <input type="hidden" id="editCalorieId" name="calorie_id">
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
             <div class="table-graph-container">
                 <div class="table-container">
                     <table class="table text-center table-sm">
@@ -150,7 +209,7 @@ $result = $stmt->fetchAll();
                         </thead>
                         <tbody id="calorieTableBody">
                             <?php
-                                // Display logged-in user's calories
+                                // display data in the table
                                 foreach ($result as $row) {
                                     $calorieId = $row['tbl_calorie_id'];
                                     $calorieDate = $row['calorie_date'];
@@ -162,8 +221,10 @@ $result = $stmt->fetchAll();
                                     echo '<td>' . $calorieAmount . '</td>';
                                     
                                     echo '<td style="background-color: transparent;">';
-                                    echo '<button type="button" class="btn btn-sm btn-light" onclick="editcalorie(' . $calorieId . ')">Edit</button> ';
-                                    echo '<button type="button" class="btn btn-sm btn-danger" onclick="removecalorie(' . $calorieId . ')">Delete</button>';
+                                    echo '<button type="button" class="btn btn-sm btn-light edit" data-bs-toggle="modal" data-bs-target="#editCalorieModal" data-calorie-id="' . $calorieId . '" data-calorie-date="' . $calorieDate . '" data-calorie-amount="' . $calorieAmount . '">Edit</button>';
+
+                                    echo '<button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-calorie-id="' . $calorieId . '" class="btn btn-sm btn-danger">Delete</button>';
+
                                     echo '</td>';
                                     echo '</tr>';
                                 }
@@ -186,12 +247,12 @@ $result = $stmt->fetchAll();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 
     <?php
-    // Fetch calorie data for the logged-in user and sum calories for each date
+    // fetching calorie data and adding it
     $stmt = $conn->prepare("SELECT calorie_date, SUM(calorie_amount) AS total_calories FROM tbl_calorie WHERE user_id = ? GROUP BY calorie_date");
     $stmt->execute([$user_id]);
     $calorieData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Prepare data for Chart.js
+    // data for chart
     $dates = [];
     $calories = [];
     foreach ($calorieData as $data) {
@@ -201,31 +262,29 @@ $result = $stmt->fetchAll();
     ?>
 
     <script>
-        
+        //chart
     const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: <?php echo json_encode($dates); ?>,
         datasets: [{
             label: 'Calories',
             data: <?php echo json_encode($calories); ?>,
             borderColor: '#f1683a',
-            backgroundColor: '#f1683a',
-            borderWidth: 1,
-            pointRadius: 6, 
+            backgroundColor: '#eee',
+            borderWidth: 3,
+           
             fill: false
         }]
     },
     options: {
-        maintainAspectRatio: false, // This ensures the height is respected
+        maintainAspectRatio: false, 
         scales: {
             x: {
-                ticks: {
-                    color: '#eee'
-                },
+             
                 grid: {
-                    color: '#eee' // Color of the x-axis grid lines
+                    color: '#eee' 
                 }
             },
             y: {
@@ -234,29 +293,75 @@ const myChart = new Chart(ctx, {
                     color: '#eee'
                 },
                 grid: {
-                    color: '#eee' // Color of the y-axis grid lines
+                    color: '#eee' 
                 }
             }
         },
         plugins: {
             legend: {
                 labels: {
-                    color: '#eee' // Color of the legend labels
+                    color: '#eee' 
                 }
             }
         }
     }
 });
 
-        function editcalorie(calorieId) {
-            // Implement your edit calorie function here
-            console.log("Edit calorie with ID:", calorieId);
-        }
+       
 
-        function removecalorie(calorieId) {
-            // Implement your remove calorie function here
-            console.log("Remove calorie with ID:", calorieId);
-        }
+         // init
+    let calorieIdToDelete = null;
+
+// event listener
+document.querySelectorAll('[data-bs-calorie-id]').forEach(button => {
+    button.addEventListener('click', function () {
+        calorieIdToDelete = this.getAttribute('data-bs-calorie-id');
+    });
+});
+
+// call function when clicked "yes"
+function removecalorie() {
+    if (calorieIdToDelete) {
+        window.location.href = `../includes/delete-calorie.php?calorie=${calorieIdToDelete}`;
+    }
+}
+      
+        
     </script>
+    
+    <script>
+        //edit event
+document.querySelectorAll('[data-bs-target="#editCalorieModal"]').forEach(button => {
+    button.addEventListener('click', function () {
+        const calorieId = this.getAttribute('data-calorie-id');
+        const calorieDate = this.getAttribute('data-calorie-date');
+        const calorieAmount = this.getAttribute('data-calorie-amount');
+
+        document.getElementById('editCalorieId').value = calorieId;
+        document.getElementById('editCalorieDate').value = calorieDate;
+        document.getElementById('editCalorieAmount').value = calorieAmount;
+    });
+});
+
+// form submission to edit calorie data
+document.getElementById('editCalorieForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    
+    fetch('../includes/edit-calorie.php', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              location.reload(); 
+          } else {
+              alert("Failed to update calorie data.");
+          }
+      }).catch(error => console.error('Error:', error));
+});
+</script>
+
 </body>
 </html>

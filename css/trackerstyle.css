@@ -263,6 +263,30 @@ th:nth-child(3) {
     color: #000;
 }
 
+/* modal of delete */
+
+.modal-footer-delete{
+    border: none;
+}
+.modal-footer-delete .btn{
+    background-color: transparent;
+    border: 1px solid #eee;
+}
+.modal-footer-delete .btn:hover{
+    background-color: #eee;
+    color: #000000;
+    border: 1px solid #eee;
+    cursor: default;
+}
+
+
+/*table buttons*/
+.edit{
+    flex-wrap: wrap;
+    margin-right: 6px;
+}
+
+
 /* Responsive layout */
 @media (max-width: 1200px) {
     .calories-container {
