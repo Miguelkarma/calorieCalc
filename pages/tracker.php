@@ -61,7 +61,7 @@ $result = $stmt->fetchAll();
                         <?php if ($user['profile_picture']): ?>
                             <img src="<?php echo $user['profile_picture']; ?>" alt="Profile Picture" class="rounded-circle" width="100" height="100">
                         <?php else: ?>
-                            <img src="../images/1.png" alt="Default Profile Picture" class="rounded-circle" width="100" height="100">
+                            <img src="../images/icon1.png" alt="Default Profile Picture" class="rounded-circle" width="100" height="100">
                         <?php endif; ?>
                     </div>
 
@@ -263,14 +263,28 @@ $result = $stmt->fetchAll();
 
     <script>
         //chart
+//declare variable to get the dates and calories
+        let dates = <?php echo json_encode($dates); ?>;
+let calories = <?php echo json_encode($calories); ?>;
+
+// js method to create array 
+let dateCaloriesArray = dates.map((date, index) => ({ date: new Date(date), calories: calories[index] }));
+
+// sorting array
+dateCaloriesArray.sort((a, b) => a.date - b.date);
+
+
+dates = dateCaloriesArray.map(item => item.date.toISOString().split('T')[0]); 
+calories = dateCaloriesArray.map(item => item.calories);
+
     const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: <?php echo json_encode($dates); ?>,
+        labels: dates,
         datasets: [{
             label: 'Calories',
-            data: <?php echo json_encode($calories); ?>,
+            data: calories,
             borderColor: '#f1683a',
             backgroundColor: '#eee',
             borderWidth: 3,

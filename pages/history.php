@@ -54,7 +54,7 @@ $user = $user_result->fetch_assoc();
                         <?php if ($user['profile_picture']): ?>
                             <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="rounded-circle" width="100" height="100">
                         <?php else: ?>
-                            <img src="../images/1.png" alt="Default Profile Picture" class="rounded-circle" width="100" height="100">
+                            <img src="../images/icon1.png" alt="Default Profile Picture" class="rounded-circle" width="100" height="100">
                         <?php endif; ?>
                     </div>
 
