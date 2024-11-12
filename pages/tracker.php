@@ -76,6 +76,7 @@ $result = $stmt->fetchAll();
                         <li class="nav-item">
                             <a class="nav-link active" href="tracker.php">Tracker</a>
                         </li>
+                       
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Calculator
@@ -196,7 +197,7 @@ $result = $stmt->fetchAll();
     </div>
 </div>
 
-
+<!-- table -->
             <div class="table-graph-container">
                 <div class="table-container">
                     <table class="table text-center table-sm">

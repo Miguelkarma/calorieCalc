@@ -323,7 +323,9 @@ header a{
 
 /* Responsive styling */
 
-@media screen and (max-width: 1024px) {
+
+
+@media screen and (max-width: 1400px) {
     header {
         max-width: 90%;
         height:50px;
@@ -332,10 +334,13 @@ header a{
     .carousel .list .item .content {
         padding-right: 20%;
     }
+    .carousel .list .item .author {
+        font-size: 1.5em;
+    }
 
     .carousel .list .item .title,
     .carousel .list .item .topic {
-        font-size: 3em;
+        font-size: 6em;
     }
 
     .carousel .list .item .des {

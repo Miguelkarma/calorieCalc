@@ -132,7 +132,18 @@ label {
     font-weight: bold;
     margin-bottom: 15px;
 }
-
+@media (max-width: 1600px) {
+    form {
+        max-width: 90%; 
+        padding-left: 18em; 
+        padding-right: 18em;
+        padding-bottom: auto;
+        height: 43em;
+    }
+    form input{
+        padding: 0.7em;
+    }
+}
 
 @media (max-width: 1024px) { 
     form {

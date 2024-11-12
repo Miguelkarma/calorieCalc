@@ -288,7 +288,7 @@ th:nth-child(3) {
 
 
 /* Responsive layout */
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
     .calories-container {
         width: 80vw; 
     }

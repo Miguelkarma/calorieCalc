@@ -59,6 +59,7 @@ form input {
     border-radius: 6px;
     background-color: #f8f9fa;
     color: #495057;
+ 
 }
 
 label {
@@ -76,7 +77,7 @@ label {
     cursor: default;
     transition: background-color 0.7s ease;
     margin-top: 24px;
-    width: 100%;
+    width: 80%;
     font-size: 24px;
     font-weight: 500;
 }
@@ -115,7 +116,7 @@ label {
     border-radius: 10px;
     cursor: default;
    text-decoration: none;
-    width: 100%;
+    width: 60%;
     
         font-size: 20px;
   
@@ -144,20 +145,34 @@ label {
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1600px) {
+
     body {
         padding: 30px;
     }
     
     .form {
-        padding: 40px;
-        max-width: 70%;
+        padding: 30px;
+        max-width: 50%;
     }
 
     .button3 {
-        left: 10px;
+        left: 2em;
         font-size: 35px;
         
+    }
+    form input{
+        width: 70%;
+        justify-self: center;
+    }
+    .button1{
+        padding: 10px 10px;
+    }
+    img{
+        height: 10em;
+    }
+    .register-button{
+        padding: 10px 10px;
     }
 }
 
