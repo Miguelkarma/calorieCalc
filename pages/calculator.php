@@ -131,12 +131,12 @@
 
                         <div class="form-group">
                             <label for="weight">Weight (kg):</label>
-                            <input type="number" id="weight" name="weight" min="0" required class="form-control">
+                            <input type="number" id="weight" name="weight" min="1" max="800" required class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="height">Height (cm):</label>
-                            <input type="number" id="height" name="height" min="0" required class="form-control">
+                            <input type="number" id="height" name="height" min="1" max="300" required class="form-control">
                         </div>
 
                         <div class="form-group">

@@ -22,6 +22,8 @@ $user = $stmt->fetch();
 $stmt = $conn->prepare("SELECT * FROM tbl_calorie WHERE user_id = ? ORDER BY calorie_date");
 $stmt->execute([$user_id]);
 $result = $stmt->fetchAll();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,11 +65,12 @@ $result = $stmt->fetchAll();
                         <?php else: ?>
                             <img src="../images/icon1.png" alt="Default Profile Picture" class="rounded-circle" width="100" height="100">
                         <?php endif; ?>
+                        
                     </div>
 
                     <!-- Display Username -->
                     <h5 class="text-center text-white mb-3"><?php echo htmlspecialchars($user['username']); ?></h5>
-
+                   
                     <!-- Menu Items -->
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
@@ -280,7 +283,7 @@ calories = dateCaloriesArray.map(item => item.calories);
 
     const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: dates,
         datasets: [{
@@ -288,7 +291,7 @@ const myChart = new Chart(ctx, {
             data: calories,
             borderColor: '#f1683a',
             backgroundColor: '#eee',
-            borderWidth: 3,
+            borderWidth: 2,
            
             fill: false
         }]

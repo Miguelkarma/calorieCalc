@@ -39,7 +39,7 @@
                 include '../includes/db_connect.php';
                 
                 $user_id = $_SESSION['user_id'];
-                $query = "SELECT username, bio, profile_picture FROM users WHERE id = '$user_id'";
+                $query = "SELECT username, profile_picture FROM users WHERE id = '$user_id'";
                 $result = mysqli_query($conn, $query);
                 $user = mysqli_fetch_assoc($result);
                 ?>
@@ -55,9 +55,8 @@
 
                 <!-- Display Username -->
                 <h5 class="text-center text-white mb-3"><?php echo htmlspecialchars($user['username']); ?></h5>
-                <p class="text-center text-white">
-    <?php echo nl2br(htmlspecialchars($user['bio'] ?? 'No Bio')); ?>
-</p>
+        
+  
                 <!-- Menu Items -->
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
@@ -146,17 +145,11 @@
                 <label for="confirmPassword" class="form-label">Confirm New Password</label>
                 <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm your New Password" />
             </div>
-
-            <div class="mb-3">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" name="bio" id="bio" rows="2" placeholder="Tell us about yourself..."></textarea>
-            </div>
         
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
 
-        <!-- Bio Display Section -->
-        <div class="bio mt-3" id="bioDisplay" style="display: none;"></div>
+   
     </div>
 </div>
 

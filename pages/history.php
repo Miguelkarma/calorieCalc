@@ -60,7 +60,7 @@ $user = $user_result->fetch_assoc();
 
                     <!-- Display Username -->
                     <h5 class="text-center text-white mb-3"><?php echo htmlspecialchars($user['username']); ?></h5>
-
+           
                     <!-- Menu Items -->
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
