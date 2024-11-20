@@ -39,7 +39,7 @@
                 include '../includes/db_connect.php';
                 
                 $user_id = $_SESSION['user_id'];
-                $query = "SELECT username, profile_picture FROM users WHERE id = '$user_id'";
+                $query = "SELECT username, bio, profile_picture FROM users WHERE id = '$user_id'";
                 $result = mysqli_query($conn, $query);
                 $user = mysqli_fetch_assoc($result);
                 ?>
@@ -55,7 +55,9 @@
 
                 <!-- Display Username -->
                 <h5 class="text-center text-white mb-3"><?php echo htmlspecialchars($user['username']); ?></h5>
-
+                <p class="text-center text-white">
+    <?php echo nl2br(htmlspecialchars($user['bio'] ?? 'No Bio')); ?>
+</p>
                 <!-- Menu Items -->
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">

@@ -144,6 +144,10 @@ label {
     font-size: 17px;
 }
 
+.forgot{
+    text-decoration: none;
+    color: #f1683a;
+}
 
 @media screen and (max-width: 1600px) {
 

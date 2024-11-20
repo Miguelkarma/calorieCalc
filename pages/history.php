@@ -103,22 +103,25 @@ $user = $user_result->fetch_assoc();
                 </thead>
                 <tbody>
                     <?php
-                    while ($row = $result->fetch_assoc()) {
-                        $calculation = json_decode($row['calculation'], true);
-                        echo "<tr class='history-item'>";
-                        echo "<td>" . date("F j, Y, g:i a", strtotime($row['created_at'])) . "</td>"; 
-                        echo "<td>";
-                        
-                        if (!empty($calculation)) {
-                            foreach ($calculation as $goal => $calories) {
-                                echo "<strong>{$goal}</strong>: {$calories} Calories/day<br>";
-                            }
-                        } else {
-                            echo "Calculation data not available.";
+                   while ($row = $result->fetch_assoc()) {
+                    $calculation = json_decode($row['calculation'], true);
+                    echo "<tr class='history-item'>";
+                    echo "<td>" . date("F j, Y, g:i a", strtotime($row['created_at'])) . "</td>"; 
+                    echo "<td>";
+                    
+                    if (!empty($calculation)) {
+                        foreach ($calculation as $goal => $calories) {
+                           
+                            $formattedGoal = ucwords(preg_replace('/([a-z])([A-Z])/', '$1 $2', $goal));
+                            echo "<strong>{$formattedGoal}</strong>: {$calories} Calories/day<br>";
                         }
-                        echo "</td>";
-                        echo "</tr>";
+                    } else {
+                        echo "Calculation data not available.";
                     }
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                
                     ?>
                 </tbody>
             </table>

@@ -62,5 +62,14 @@ document.getElementById('calorie-form').addEventListener('submit', function(even
             weightLoss: weightLoss.toFixed(0),
             extremeWeightLoss: extremeWeightLoss.toFixed(0)
         })
-    });
-});
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log("Calculation saved successfully.");
+        } else {
+            console.error("Error saving calculation:", data.error);
+        }
+    })
+    .catch(error => console.error("Fetch error:", error));
+})

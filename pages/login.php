@@ -44,7 +44,7 @@ session_start();
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            
+            <a class="forgot" href="forgotPass.php">Forgot Password?</a>
             <button class="button1" type="submit">Login</button>
         </form>
        

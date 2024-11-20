@@ -53,7 +53,7 @@
 
                     <!-- Display Username -->
                     <h5 class="text-center text-white mb-3"><?php echo htmlspecialchars($user['username']); ?></h5>
-
+                   
                     <!-- Menu Items -->
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
@@ -118,7 +118,7 @@
                     <form id="calorie-form">
                         <div class="form-group">
                             <label for="age">Age:</label>
-                            <input type="number" id="age" name="age" min="0" required class="form-control">
+                            <input type="number" id="age" name="age" min="1" max="100" required class="form-control">
                         </div>
 
                         <div class="form-group">
