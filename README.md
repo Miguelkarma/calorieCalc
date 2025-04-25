@@ -1,5 +1,3 @@
-# CalorieCalc
-
 # Calorie Calculator and Calorie Tracker
 
 This application, built with PHP and Bootstrap, allows users to calculate the number of calories they need per day based on their weight (in kg) and height (in cm) using the Mifflin-St Jeor formula. It also includes a calorie tracker to log the calories consumed each day and stores the calculation history for future reference.
