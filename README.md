@@ -60,8 +60,8 @@ For example, move it to `C:\xampp\htdocs\calorie-calculator`.
 ## Technologies Used
 
 - **Frontend**: PHP, HTML, CSS, Bootstrap
-- **Backend**: PHP (with XAMPP for local server setup)
-- **Database**: MySQL (if needed for storing history or other data)
+- **Backend**: PHP (with Laragon for local server setup)
+- **Database**: MySQL 
 - **Libraries**: None (built with native PHP and Bootstrap)
 
 ## Future Integration
