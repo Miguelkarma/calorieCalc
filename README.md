@@ -72,7 +72,7 @@ For example, move it to `C:\xampp\htdocs\calorie-calculator`.
 
 ## Developer
 
-This application was developed by [Your Name]. For questions, feedback, or support, please contact:
+This application was developed by Miguelkarma. For questions, feedback, or support, please contact:
 
 - Email: santos.p.miguel46@gmail.com
 - GitHub: [@Miguelkarma](https://github.com/Miguelkarma)
